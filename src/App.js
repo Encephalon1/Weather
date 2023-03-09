@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import Header from './header';
 import Maps from './Map.js'
 
 
