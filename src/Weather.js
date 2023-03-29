@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { usePosition } from 'use-position';
 
 
-function Geolocation() {
+function Weather() {
+
     const {
         latitude,
         longitude
     } = usePosition();
-    return (latitude, longitude)
-}
 
-let days = 1
+    let days = 1;
 
-function Weather() {
-    axios.get('https://api.openweathermap.org/data/2.5/weather?lat={Geolocation.latitude}&lon={Geolocation.longitude}&cnt={days}&appid=c95d5ac1786635e9beb26c854ab7abde').then()
+    const [dayWeather, setWeather] = useState([]);
+
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&cnt=${days}&appid=c95d5ac1786635e9beb26c854ab7abde`).then(res => {
+        console.log(res);
+        setWeather(res.data);
+    })
 
     return (
-        <Weather>
-            <h1>Hello</h1>
-        </Weather>
+        dayWeather.map(weather => <p>{weather.main}</p>)
     );
 }
 
